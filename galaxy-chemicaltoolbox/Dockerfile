@@ -92,8 +92,7 @@ RUN service postgresql stop
 RUN rm $PG_DATA_DIR_DEFAULT -rf
 RUN python ./init_galaxy.py --dbuser galaxy --dbpassword galaxy --db-name galaxy --guser admin@galaxy.org --gpassword admin --gkey admin --dbpath $PG_DATA_DIR_DEFAULT --docker-build
 
-ADD jmoleditor.tar.gz /galaxy-central/
-RUN tar xvfz jmoleditor.tar.gz
+ADD ./Jmoleditor.tar.bz2 /galaxy-central/
 
 
 # Mark two folders as imported from the host.
