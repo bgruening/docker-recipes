@@ -8,5 +8,7 @@ cd /galaxy-central
 python ./init_galaxy.py --dbuser galaxy --dbpassword galaxy --db-name galaxy --guser admin@galaxy.org --gpassword admin --gkey admin --mode ${GALAXY_DOCKER_MODE-TESTMODE}
 # start Galaxy
 ./run.sh --daemon
+# start the Webserver that is needed for Jmoleditor 
+python -m SimpleHTTPServer &
 # start Apache in Foreground, that is needed for Docker
 apache2 -D FOREGROUND

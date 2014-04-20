@@ -160,7 +160,7 @@ if __name__ == "__main__":
         add_user(options.guser, options.gpassword, options.gkey)
 
         # Install from Tool Shed
-        cmd = 'python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r 8ccd9e4c87d8 --name chemicaltoolbox --tool-deps --repository-deps --panel-section-name ChemicalToolBox'
+        cmd = 'python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r b223268cc050 --name chemicaltoolbox --tool-deps --repository-deps --panel-section-name ChemicalToolBox'
         subprocess.call(cmd, cwd="/galaxy-central/", shell=True)
         pg_ctl( database_path, 'stop' )
     else:

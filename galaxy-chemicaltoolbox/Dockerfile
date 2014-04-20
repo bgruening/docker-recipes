@@ -18,6 +18,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y autoconf
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y automake
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y build-essential
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y gfortran
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y cmake
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y git-core
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libatlas-base-dev
@@ -25,13 +26,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y li
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y liblapack-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y mercurial
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y subversion
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y python-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y python-dev
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y pkg-config
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y openjdk-7-jre
+
+# Used to get Galaxy running in Docker with Apache2 and PostgreSQL
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y postgresql
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y apache2
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libapache2-mod-xsendfile
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y sudo
+
+# Used in ChemicalToolBoX
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget
 
 # Load required Apache Modules
 RUN a2enmod xsendfile
@@ -85,6 +91,10 @@ RUN service postgresql stop
 # 3. Create Galaxy Admin User 'admin@galaxy.org' with password 'admin' and API key 'admin'
 RUN rm $PG_DATA_DIR_DEFAULT -rf
 RUN python ./init_galaxy.py --dbuser galaxy --dbpassword galaxy --db-name galaxy --guser admin@galaxy.org --gpassword admin --gkey admin --dbpath $PG_DATA_DIR_DEFAULT --docker-build
+
+ADD jmoleditor.tar.gz /galaxy-central/
+RUN tar xvfz jmoleditor.tar.gz
+
 
 # Mark two folders as imported from the host.
 # Here we will store the data if the User set GALAXY_DOCKER_MODE=HOST
