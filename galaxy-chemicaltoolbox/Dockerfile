@@ -13,6 +13,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wg
 # compressed archives will be extracted automatically
 ADD ./Jmoleditor.tar.bz2 /galaxy-central/
 
+RUN rm /usr/bin/startup
+ADD ./startup.sh /usr/bin/startup
+RUN chmod +x /usr/bin/startup
+
 RUN service postgresql start && service apache2 start && ./run.sh --daemon && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r b223268cc050 --name chemicaltoolbox --tool-deps --repository-deps --panel-section-name ChemicalToolBox
 
 # Mark one folders as imported from the host.
@@ -20,6 +24,8 @@ VOLUME ["/export/"]
 
 # Expose port 80 to the host
 EXPOSE :80
+# 8000 is the standard SimpleHTTPServer Server port from python
+EXPOSE :8000
 
 # Autostart script that is invoked during container start
 CMD ["/usr/bin/startup"]
