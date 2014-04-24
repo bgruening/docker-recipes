@@ -8,6 +8,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libcairo2-dev
 
 # Include all needed scripts and libraries from the host
 # compressed archives will be extracted automatically
