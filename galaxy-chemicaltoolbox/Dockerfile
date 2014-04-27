@@ -24,10 +24,10 @@ RUN chmod +x /usr/bin/startup
 RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r c799c6211cbd --name chemicaltoolbox --tool-deps --repository-deps --panel-section-name ChemicalToolBox
 
 # install unique wrapper
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r 7ce75adb93be --name unique --tool-deps --repository-deps --panel-section-name "Filter and Sort"
+RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r 7ce75adb93be --name unique --tool-deps --repository-deps --panel-section-id filter
 
 # Install sed wrapper
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening -r e850a63e5aed --name sed_wrapper --tool-deps --repository-deps --panel-section-name "Text Manipulation"
+RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening -r e850a63e5aed --name sed_wrapper --tool-deps --repository-deps --panel-section-id textutil
 
 # Install workflow
 RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r fdabd3833502 --name chemicaltoolbox_merging_chemical_databases_workflow --tool-deps --repository-deps --panel-section-name ChemicalToolBox
