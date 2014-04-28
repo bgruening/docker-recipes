@@ -25,6 +25,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y lf
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y gfortran
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y tcl-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y python2.7
 
 RUN Rscript -e 'install.packages("evir", dependencies=TRUE, repos="http://cran.us.r-project.org")'
 RUN Rscript -e 'install.packages("seqinr", dependencies=TRUE, repos="http://cran.us.r-project.org")'
@@ -48,9 +49,14 @@ RUN tar -zxvf intarna-1.2.5.tar.gz
 RUN rm intarna-1.2.5.tar.gz
 RUN cd intarna-1.2.5 && ./configure && make && make install
 
-ADD coprarna_1.2.7.tar.gz /coprarna/
+ADD coprarna_1.2.7.tar.bz2 /coprarna/
+ADD run_coprarna.py /coprarna/
+RUN chmod +x /coprarna/run_coprarna.py
 
-ENTRYPOINT ["/coprarna/1.2.7/homology_intaRNA.pl"]
+# link the coprarna main program to /coprarna/ ... the python wrapper assumes the executable under /coprarna/homology_intaRNA.pl
+RUN ln -s /coprarna/1.2.7/homology_intaRNA.pl /coprarna/homology_intaRNA.pl
+
+ENTRYPOINT ["/coprarna/run_coprarna.py"]
 
 # Cleanup
 RUN DEBIAN_FRONTEND=noninteractive apt-get purge -y build-essential
