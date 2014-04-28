@@ -1,0 +1,72 @@
+CopraRNA Docker Image
+=====================
+
+CopraRNA is a tool for sRNA target prediction.
+
+It computes whole genome predictions by combination of distinct whole genome IntaRNA predictions. As input, CopraRNA requires 
+at least 3 homologous sRNA sequences from 3 distinct organisms in FASTA format. 
+Furthermore each organisms' genome has to be part of the NCBI Reference Sequence 
+(RefSeq) database (i.e. it should have exactly this format NC_XXXXXX where X stands for a digit between 0 and 9). 
+Depending on sequence length (target and sRNA), amount of input organisms and genome sizes, 
+CopraRNA can take up to 24h to compute (in most cases it is significantly faster).
+
+The CopraRNA Webserver can be found here:
+
+http://rna.informatik.uni-freiburg.de/CopraRNA/Input.jsp
+
+
+Usage
+=====
+
+
+
+
+Requirements
+============
+
+- [docker](https://www.docker.io/gettingstarted/#h_installation)
+
+
+History
+=======
+
+ - 0.1: Initial release!
+
+
+How to cite CopraRNA
+====================
+
+-   Patrick R. Wright, Andreas S. Richter, Kai Papenfort, Martin Mann, Jörg Vogel, Wolfgang R. Hess, Rolf Backofen and Jens Georg
+    [Comparative genomics boosts target prediction for bacterial small RNAs](http://www.bioinf.uni-freiburg.de//Subpages/publications.html?de#Wright_Richter_Papenfort-Compa_genom_boost-PNAS2013.abstract)
+    Proc Natl Acad Sci USA, 2013, 110(37), E3487–E3496.
+
+
+
+
+Bug Reports
+===========
+
+You can file an issue here https://github.com/bgruening/galaxy_docker/issues or ask
+us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
+
+
+Licence (MIT)
+=============
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
