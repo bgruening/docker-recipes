@@ -18,7 +18,20 @@ http://rna.informatik.uni-freiburg.de/CopraRNA/Input.jsp
 Usage
 =====
 
+You can use the Docker CopraRNA container with the following command.
 
+```
+docker run -v /full/path/to/seq/dir/:/transfer/ bgruening/coprarna --infile /transfer/input_sRNA.fa --upstream --downstream --region --refseq-ids NC_000913 NC_009792 NC_013716 NC_011740 --outdir /transfer/
+```
+
+```docker run``` will invoke the preconfigured CopraRNA box and ``` -v /full/path/to/seq/dir/:/transfer/ ``` will mount the host folder (```/full/path/to/seq/dir/```) into the container (``` /transfer/ ```). All arguments behind the container name ```bgruening/coprarna``` are arguments for CopraRNA. ``` --outdir ``` will specify the output directory. It should be the same as your transfer folder, where your input sequence file is stored. In your example it was ``` /tranfer/ ```.
+
+
+```
+docker run bgruening/coprarna --help
+```
+
+Will show you the full parameter list.
 
 
 Requirements
@@ -46,8 +59,7 @@ How to cite CopraRNA
 Bug Reports
 ===========
 
-You can file an issue here https://github.com/bgruening/galaxy_docker/issues or ask
-us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
+You can file an issue here https://github.com/bgruening/docker-recipes/issues.
 
 
 Licence (MIT)
