@@ -59,10 +59,10 @@ History
  - 0.1: Initial release!
 
 
-Bug Reports
-===========
+Support & Bug Reports
+=====================
 
-You can file an issue here https://github.com/bgruening/galaxy_docker/issues or ask
+You can file an issue here https://github.com/bgruening/galaxy_recipes/issues or ask
 us on the Galaxy development list http://lists.bx.psu.edu/listinfo/galaxy-dev
 
 
