@@ -19,6 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y li
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libsoap-lite-perl
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libhttp-cookies-perl
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y emboss
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y clustalw
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y embassy-phylip
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y imagemagick
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y lftp
