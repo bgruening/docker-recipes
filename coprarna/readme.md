@@ -21,7 +21,7 @@ Usage
 You can use the Docker CopraRNA container with the following command.
 
 ```
-docker run -v /full/path/to/seq/dir/:/transfer/ bgruening/coprarna --infile /transfer/input_sRNA.fa --upstream --downstream --region --refseq-ids NC_000913 NC_009792 NC_013716 NC_011740 --outdir /transfer/
+docker run -v /full/path/to/seq/dir/:/transfer/ bgruening/coprarna --infile /transfer/input_sRNA.fa --upstream 200 --downstream 100 --region 5utr --refseq-ids NC_000913 NC_009792 NC_013716 NC_011740 --outdir /transfer/
 ```
 
 ```docker run``` will invoke the preconfigured CopraRNA box and ``` -v /full/path/to/seq/dir/:/transfer/ ``` will mount the host folder (```/full/path/to/seq/dir/```) into the container (``` /transfer/ ```). All arguments behind the container name ```bgruening/coprarna``` are arguments for CopraRNA. ``` --outdir ``` will specify the output directory. It should be the same as your transfer folder, where your input sequence file is stored. In your example it was ``` /tranfer/ ```.
