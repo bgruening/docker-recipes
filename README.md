@@ -7,6 +7,7 @@ A collection of Chem- & Bioinformatic related Dockerfiles.
 - Galaxy-chemicaltoolbox: [ChemicalToolBox](https://github.com/bgruening/galaxytools/tree/master/chemicaltoolbox) Image, based on the Galaxy-stable Image with ChemicalToolBox installed
 - Galaxy-deepTools: deepTools Image, based on the Galaxy-stable Image with [deepTools](http://deeptools.github.io/) installed
 - CopraRNA: A tool for sRNA target prediction from Patrick R. Wright (Bioinformatic Group in Freiburg)
+- Galaxy-docker: Proof of principal for running docker in galaxy in docker.
 
 A detailed description can be found in the project specific readme files.
 
