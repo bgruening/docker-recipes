@@ -40,6 +40,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y su
 # samtools is used to handle BAM files inside of Galaxy
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y samtools
 
+
+# Set up Docker within Docker
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y curl
+RUN wget http://get.docker.io/builds/Linux/x86_64/docker-latest -O /usr/bin/docker
+RUN curl -o /etc/init.d/docker https://raw.githubusercontent.com/dotcloud/docker/master/contrib/init/sysvinit-debian/docker
+RUN chmod +x /usr/bin/docker /etc/init.d/docker
+RUN addgroup docker
+RUN update-rc.d -f docker defaults
+RUN echo DOCKER_OPTS='-H 127.0.0.1:4243 -H unix:///var/run/docker.sock' > /etc/default/docker
+#RUN service docker restart
+
+
 # Load required Apache Modules
 RUN a2enmod xsendfile
 RUN a2enmod proxy
@@ -111,4 +124,3 @@ EXPOSE :80
 CMD ["/usr/bin/startup"]
 RUN rm ./.hg/ -rf
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-

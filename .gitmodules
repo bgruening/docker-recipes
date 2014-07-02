@@ -1,0 +1,3 @@
+[submodule "galaxy-docker"]
+	path = galaxy-docker
+	url = https://github.com/andrewcstewart/galaxy-docker
