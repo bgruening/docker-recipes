@@ -11,6 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wg
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libcairo2-dev
 
 RUN sed -i 's|brand.*|brand = ChemicalToolBox|g' ~/galaxy-central/universe_wsgi.ini
+RUN sed -i 's|#serve_xss_vulnerable_mimetypes.*|serve_xss_vulnerable_mimetypes = True|g' ~/galaxy-central/universe_wsgi.ini
 
 # Include all needed scripts and libraries from the host
 # compressed archives will be extracted automatically
