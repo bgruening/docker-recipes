@@ -11,7 +11,8 @@ def change_path( src ):
     """
         src will be copied to /export/`src` and a symlink will be placed in src pointing to /export/
     """
-    if os.path.exists( src ):
+    # assume if path is a symlink we are restarting a container and no setup required
+    if os.path.exists( src ) and not os.path.islink( src.rstrip('/') ):
         dest = os.path.join( '/export/', src.strip('/') )
         # if destination is empty move all files into /export/ and symlink back to source
         if not os.path.exists( dest ):
