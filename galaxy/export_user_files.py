@@ -31,7 +31,8 @@ def change_path( src ):
 
 if __name__ == "__main__":
 
-    if os.path.exists('/export/'):
+    # check export directory is available and user files are not already exported
+    if os.path.exists('/export/') and not os.path.exists('/export/.galaxy_save'):
         change_path('/galaxy-central/universe_wsgi.ini')
         change_path('/galaxy-central/database/files/')
         change_path('/galaxy-central/database/job_working_directory/')
@@ -59,6 +60,8 @@ if __name__ == "__main__":
         new_data_directory = "'%s'" % PG_DATA_DIR_HOST
         cmd = 'sed -i "s|data_directory = .*|data_directory = %s|g" %s' % (new_data_directory, PG_CONF)
         subprocess.call(cmd, shell=True)
-
+        
+        # mark user files as exported
+        open('/export/.galaxy_save', 'a').close()
 
 
