@@ -10,7 +10,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com & Martin Mann, mmann@in
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y openjdk-7-jre tomcat7
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y openjdk-7-jre-headless tomcat7
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y gridengine-master gridengine-exec gridengine-common gridengine-qmon gridengine-client
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y ghostscript wget graphicsmagick graphicsmagick-imagemagick-compat
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y r-base-core
