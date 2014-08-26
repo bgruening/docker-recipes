@@ -8,19 +8,13 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 RUN sed -i 's|brand.*|brand = Exom Sequencing Pipeline|g' ~/galaxy-central/universe_wsgi.ini
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget curl
-RUN DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
 WORKDIR /galaxy-central
 ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
 RUN chmod +x ./install_repo_wrapper.sh
 
 # Install GATK2, samtools and 
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name gatk2 --panel-section-name GATK2"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gatk2 --panel-section-name GATK2"
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name suite_samtools_0_1_19 --panel-section-name SAMTools"
 RUN ./install_repo_wrapper.sh \
@@ -31,6 +25,24 @@ RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-name Mapping"
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc --panel-section-name QualityControl"
+
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_pysam_0_7_7"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name package_libpng_1_6_7"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_freetype_2_4"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_numpy_1_7"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_scipy_0_12"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_matplotlib_1_2"
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_bx_python_12_2013"
+
+
+
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools"
 RUN ./install_repo_wrapper.sh \
@@ -41,8 +53,9 @@ RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name bwa_mem  --panel-section-name Mapping"
 
 
+
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name vt_variant_tools --panel-section-name VCFtools"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name vt_variant_tools --panel-section-name VCFtools"
 
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o anton --name suite_vcflib_tools_2_0 --panel-section-name VCFtools"
@@ -51,19 +64,19 @@ RUN ./install_repo_wrapper.sh \
 
 # Install GEMINI and BED tools
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_tabix_0_2_6"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_tabix_0_2_6"
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_bedtools_2_19"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_bedtools_2_19"
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_grabix_0_1_3"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_grabix_0_1_3"
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name data_manager_gemini_database_downloader"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name data_manager_gemini_database_downloader"
 
 RUN sleep 1 && ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name GEMINI"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name GEMINI"
 
 RUN sleep 1 && ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
 
 
 
