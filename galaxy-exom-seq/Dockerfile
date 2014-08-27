@@ -53,7 +53,6 @@ RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name bwa_mem  --panel-section-name Mapping"
 
 
-
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name vt_variant_tools --panel-section-name VCFtools"
 
@@ -70,13 +69,13 @@ RUN ./install_repo_wrapper.sh \
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_grabix_0_1_3"
 RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_gemini_0_10_0"
+RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name data_manager_gemini_database_downloader"
-
-RUN sleep 1 && ./install_repo_wrapper.sh \
+RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name GEMINI"
-
-RUN sleep 1 && ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
+RUN ./install_repo_wrapper.sh \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
 
 
 
