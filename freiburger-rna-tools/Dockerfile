@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y gr
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y ghostscript wget graphicsmagick graphicsmagick-imagemagick-compat
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y r-base-core
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y cpanminus
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y sudo nano less
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y sudo nano less vim procps
 
 RUN mkdir -p /usr/local/user/
 
