@@ -9,6 +9,8 @@ service postgresql start
 
 if [ ! -f /export/.pubmed2go_save ]; then
     python PubMedParser.py -i /export/import_data/ -d pubmed -p 4
+    cd full_text_index
+    python RunXapian.py --xapian_database_path /export/ --index --db_psql pubmed --no_search
 fi
 
 touch /export/.pubmed2go_save
