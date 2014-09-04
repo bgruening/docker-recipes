@@ -48,9 +48,6 @@ RUN sed -i "s|complex_values        NONE|complex_values        h_vmem=`grep 'Mem
 
 ADD host_group_entry /host_group_entry
 ADD queue /queue
-# set maximum of avaiable CPU's
-RUN sed -i "s|processors            4|processors            `grep ^processor /proc/cpuinfo | wc -l`|g" /queue
-RUN sed -i "s|slots                 4|slots                 `grep ^processor /proc/cpuinfo | wc -l`|g" /queue
 
 USER root
 # Expose port 8080 to the host
