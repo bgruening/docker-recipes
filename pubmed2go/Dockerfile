@@ -9,7 +9,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 # make sure the package repository is up to date
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install --no-install-recommends -y git-core mercurial build-essential \
-        python-xapian python-xapian python-pip pkg-config postgresql python-dev ca-certificates python-psycopg2
+        python-xappy python-xapian python-pip pkg-config postgresql python-dev ca-certificates python-psycopg2
 
 RUN dpkg-reconfigure locales && \
     locale-gen C.UTF-8 && \
