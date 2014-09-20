@@ -2,7 +2,7 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:latest_2014.08.11
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -21,19 +21,27 @@ RUN rm /usr/bin/startup
 ADD ./startup.sh /usr/bin/startup
 RUN chmod +x /usr/bin/startup
 
+ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
+RUN chmod +x ./install_repo_wrapper.sh
+
 # Install ChemicalToolBox & one example workflow
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r c799c6211cbd --name chemicaltoolbox --tool-deps --repository-deps --panel-section-name ChemicalToolBox
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox --panel-section-name ChemicalToolBox"
 
 # install unique wrapper
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r 7ce75adb93be --name unique --tool-deps --repository-deps --panel-section-id filter
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name unique --panel-section-id filter"
 
 # Install sed wrapper
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening -r e850a63e5aed --name sed_wrapper --tool-deps --repository-deps --panel-section-id textutil
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening --name sed_wrapper --panel-section-id textutil"
 
 # Install workflow
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --url http://toolshed.g2.bx.psu.edu/ -o bgruening -r fdabd3833502 --name chemicaltoolbox_merging_chemical_databases_workflow --tool-deps --repository-deps --panel-section-name ChemicalToolBox
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow --panel-section-name ChemicalToolBox"
 
-RUN service postgresql start && ./run.sh --daemon && service apache2 start && sleep 120 && python ./scripts/api/import_workflows_from_installed_tool_shed_repository.py --api admin --url http://toolshed.g2.bx.psu.edu/ -l http://localhost:8080 -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow -r fdabd3833502
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow"
 
 # Mark one folders as imported from the host.
 VOLUME ["/export/"]
