@@ -2,7 +2,7 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:latest_2014.08.11
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -73,9 +73,13 @@ RUN ./install_repo_wrapper.sh \
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name data_manager_gemini_database_downloader"
 RUN ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name GEMINI"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name VariantSelection"
 RUN ./install_repo_wrapper.sh \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
+
+RUN ./install_repo_wrapper.sh \
+    "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name kggseq_variant_selection --panel-section-name VariantSelection"
+
 
 
 
