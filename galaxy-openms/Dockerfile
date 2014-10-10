@@ -15,6 +15,10 @@ RUN chmod +x ./install_repo_wrapper.sh
 RUN sleep 7 && ./install_repo_wrapper.sh \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name package_openms_latest"
 
+RUN ./install_repo_wrapper.sh \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name openms --panel-section-name OpenMS"
+
+
 # Mark one folders as imported from the host.
 VOLUME ["/export/"]
 
