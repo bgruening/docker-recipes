@@ -1,17 +1,17 @@
 #!/bin/sh
 
-service postgresql start
-service apache2 start
-./run.sh --daemon
-
+# We need to start postgresql with the init system and not with supervisor,
+# because we need to install into the system wide database. supervisor will try
+# to start a database located under /export/
+/etc/init.d/postgresql start
+/usr/bin/supervisord
 sleep 60
-python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:8080 --tool-deps --repository-deps $1
+python ./scripts/api/install_tool_shed_repositories.py --api admin -l http://localhost:9010 --tool-deps --repository-deps $1
 exit_code=$?
 
 if [ $exit_code != 0 ] ; then
     exit $exit_code
 fi
 
-./run.sh --stop-daemon
-service postgresql stop
-service apache2 stop
+supervisorctl stop all
+/etc/init.d/postgresql stop

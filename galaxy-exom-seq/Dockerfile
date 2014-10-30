@@ -2,15 +2,16 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:latest_2014.08.11
+FROM galaxy
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
-RUN sed -i 's|brand.*|brand = Exom Sequencing Pipeline|g' ~/galaxy-central/universe_wsgi.ini
+ENV GALAXY_CONFIG_BRAND Exom Sequencing Pipeline
 
 WORKDIR /galaxy-central
 ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
 RUN chmod +x ./install_repo_wrapper.sh
+
 
 # Install GATK2, samtools and 
 RUN ./install_repo_wrapper.sh \
@@ -79,8 +80,6 @@ RUN ./install_repo_wrapper.sh \
 
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name kggseq_variant_selection --panel-section-name VariantSelection"
-
-
 
 
 # Mark one folders as imported from the host.
