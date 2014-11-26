@@ -13,7 +13,7 @@ ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
 RUN chmod +x ./install_repo_wrapper.sh
 
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o peterjc --name mummer  --panel-section-name MUMmer"
+    "--url http://toolshed.g2.bx.psu.edu/ -o peterjc --name mummer  --panel-section-name MUMmer"
 
 # Mark one folders as imported from the host.
 VOLUME ["/export/"]
