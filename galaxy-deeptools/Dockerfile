@@ -6,7 +6,7 @@ FROM bgruening/galaxy-stable:latest_2014.08.11
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
-RUN sed -i 's|brand.*|brand = deepTools|g' ~/galaxy-central/universe_wsgi.ini
+ENV GALAXY_CONFIG_BRAND deepTools
 
 WORKDIR /galaxy-central
 ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
