@@ -17,17 +17,10 @@ RUN ./install_repo_wrapper.sh \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name peptideshaker --panel-section-name PeptideShaker"
 
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_libtool_2_4"
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name package_openms_latest"
 
 RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_qt_4_8"
-
-RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_zlib_1_2_8"
-
-RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o galaxyp --name package_openms_1_11"
-
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name openms --panel-section-name OpenMS"
 
 
 # Mark one folders as imported from the host.
