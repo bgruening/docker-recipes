@@ -6,12 +6,11 @@ FROM bgruening/galaxy-stable:latest_2014.08.11
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y wget
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y libcairo2-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
+    apt-get install --no-install-recommends -y wget libcairo2-dev
 
-RUN sed -i 's|brand.*|brand = ChemicalToolBox|g' ~/galaxy-central/universe_wsgi.ini
-RUN sed -i 's|#serve_xss_vulnerable_mimetypes.*|serve_xss_vulnerable_mimetypes = True|g' ~/galaxy-central/universe_wsgi.ini
+ENV GALAXY_CONFIG_BRAND ChemicalToolBox
+ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES ChemicalToolBox
 
 # Include all needed scripts and libraries from the host
 # compressed archives will be extracted automatically
@@ -40,9 +39,6 @@ RUN ./install_repo_wrapper.sh \
 RUN ./install_repo_wrapper.sh \
     "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow --panel-section-name ChemicalToolBox"
 
-RUN ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow"
-
 # Mark one folders as imported from the host.
 VOLUME ["/export/"]
 
@@ -53,4 +49,4 @@ EXPOSE :8000
 
 # Autostart script that is invoked during container start
 CMD ["/usr/bin/startup"]
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
