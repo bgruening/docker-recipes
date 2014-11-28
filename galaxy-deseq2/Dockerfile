@@ -1,4 +1,4 @@
-# Galaxy - deepTools
+# Galaxy - DESeq2
 #
 # VERSION       0.1
 
