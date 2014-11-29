@@ -9,7 +9,7 @@ deepTools addresses the challenge of handling the large amounts of data that are
 Usage
 =====
 
-At first you need to install docker. Please follow the instruction on https://www.docker.io/gettingstarted/#h_installation
+At first you need to install docker. Please follow the instruction on https://docs.docker.com/installation/
 
 After the successful installation, all what you need to do is:
 
@@ -48,7 +48,7 @@ If you want to create new users, please make sure to use the ``/export/`` volume
 Requirements
 ============
 
-- [docker](https://www.docker.io/gettingstarted/#h_installation)
+- [docker](https://docs.docker.com/installation/)
 
 
 History

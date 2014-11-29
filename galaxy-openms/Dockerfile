@@ -1,29 +1,26 @@
-# Galaxy - deepTools
+# Galaxy - OpenMS
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:latest_2014.08.11
+FROM bgruening/galaxy-stable:dev
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
-RUN sed -i 's|brand.*|brand = OpenMS|g' ~/galaxy-central/universe_wsgi.ini
+ENV GALAXY_CONFIG_BRAND OpenMS
 
 WORKDIR /galaxy-central
-ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
-RUN chmod +x ./install_repo_wrapper.sh
 
-RUN sleep 7 && ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name package_openms_latest"
+RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name package_openms_latest"
+RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name openms --panel-section-name OpenMS"
 
-RUN ./install_repo_wrapper.sh \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name openms --panel-section-name OpenMS"
+# Mark folders as imported from the host.
+VOLUME ["/export/", "/data/", "/var/lib/docker"]
 
-
-# Mark one folders as imported from the host.
-VOLUME ["/export/"]
-
-# Expose port 80 to the host
+# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy), 9001 (Galaxy report app)
 EXPOSE :80
+EXPOSE :21
+EXPOSE :8800
+EXPOSE :9001
 
 # Autostart script that is invoked during container start
 CMD ["/usr/bin/startup"]

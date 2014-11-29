@@ -2,31 +2,31 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:latest_2014.08.11
+FROM bgruening/galaxy-stable:dev
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND deepTools
 
 WORKDIR /galaxy-central
-ADD ./install_repo_wrapper.sh /galaxy-central/install_repo_wrapper.sh
-RUN chmod +x ./install_repo_wrapper.sh
 
 # Install deepTools
-RUN ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools"
+RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools"
 
 # Install bowtie2, fastqc
-RUN ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools"
-RUN ./install_repo_wrapper.sh \
-    "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc --panel-section-id NGS_QC"
+RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools"
+RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc --panel-section-id NGS_QC"
 
-# Mark one folders as imported from the host.
-VOLUME ["/export/"]
+# Mark folders as imported from the host.
+VOLUME ["/export/", "/data/", "/var/lib/docker"]
 
-# Expose port 80 to the host
+# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy), 9001 (Galaxy report app)
 EXPOSE :80
+EXPOSE :21
+EXPOSE :8800
+EXPOSE :9001
+# 8000 is the standard SimpleHTTPServer Server port from python
+EXPOSE :8000
 
 # Autostart script that is invoked during container start
 CMD ["/usr/bin/startup"]

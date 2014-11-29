@@ -1,25 +1,24 @@
-Galaxy deepTools Docker Image
+Galaxy OpenMS Docker Image
 =============================
 
-deepTools can be seen as a collection of user-friendly tools for the normalization and visualization of deep-sequencing data.
+OpenMS is an open-source software C++ library for LC-MS data management and analyses. It offers an infrastructure for the rapid development of mass spectrometry related software.
 
-deepTools addresses the challenge of handling the large amounts of data that are now routinely generated from DNA sequencing centers. To do so, deepTools contains useful modules to process the mapped reads data to create coverage files in standard bedGraph and bigWig file formats. By doing so, deepTools allows the creation of normalized coverage files or the comparison between two files (for example, treatment and control). Finally, using such normalized and standardized files, multiple visualizations can be created to identify enrichments with functional annotations of the genome.
-
+https://github.com/OpenMS/OpenMS
 
 Usage
 =====
 
-At first you need to install docker. Please follow the instruction on https://www.docker.io/gettingstarted/#h_installation
+At first you need to install docker. Please follow the instruction on https://docs.docker.com/installation/
 
 After the successful installation, all what you need to do is:
 
-``docker run -d -p 8080:80 bgruening/galaxy-deeptools``
+``docker run -d -p 8080:80 bgruening/galaxy-openms``
 
 I will shortly explain the meaning of all the parameters. For a more detailed describtion please consult the [docker manual](http://docs.docker.io/), it's really worth reading.
 
-Let's start: ``docker run`` will run the Image/Container for you. In case you do not have the Container stored locally, docker will download it for you. ``-p 8080:80`` will make the port 80 (inside of the container) available on port 8080 on your host. Inside the container a Apache Webserver is running on port 80 and that port can be bound to a local port on your host computer. With this parameter you can access your Galaxy instance via ``http://localhost:8080`` immediately after executing the command above. ``bgruening/galaxy-deeptools`` is the Image/Container name, that directs docker to the correct path in the [docker index](https://index.docker.io/u/bgruening/galaxy-stable/). ``-d`` will start the docker container in daemon mode. For an interactive session, you can execute:
+Let's start: ``docker run`` will run the Image/Container for you. In case you do not have the Container stored locally, docker will download it for you. ``-p 8080:80`` will make the port 80 (inside of the container) available on port 8080 on your host. Inside the container a Apache Webserver is running on port 80 and that port can be bound to a local port on your host computer. With this parameter you can access your Galaxy instance via ``http://localhost:8080`` immediately after executing the command above. ``bgruening/galaxy-openms`` is the Image/Container name, that directs docker to the correct path in the [docker index](https://index.docker.io/u/bgruening/galaxy-stable/). ``-d`` will start the docker container in daemon mode. For an interactive session, you can execute:
 
-``docker run -i -t -p 8080:80 bgruening/galaxy-deeptools``
+``docker run -i -t -p 8080:80 bgruening/galaxy-openms``
 
 and run the ``` startup ``` script by your own, to start PostgreSQL, Apache and Galaxy.
 
@@ -27,7 +26,7 @@ Docker images are "read-only", all your changes inside one session will be lost 
 
 Fortunately, this is as easy as:
 
-``docker run -d -p 8080:80 -v /home/user/galaxy_storage/:/export/ bgruening/galaxy-deeptools``
+``docker run -d -p 8080:80 -v /home/user/galaxy_storage/:/export/ bgruening/galaxy-openms``
 
 With the additional ``-v /home/user/galaxy_storage/:/export/`` parameter, docker will mount the folder ``/home/user/galaxy_storage`` into the Container under ``/export/``. A ``startup.sh`` script, that is usually starting Apache, PostgreSQL and Galaxy, will recognise the export directory with one of the following outcomes:
 
@@ -48,7 +47,7 @@ If you want to create new users, please make sure to use the ``/export/`` volume
 Requirements
 ============
 
-- [docker](https://www.docker.io/gettingstarted/#h_installation)
+- [docker](https://docs.docker.com/installation/)
 
 
 History

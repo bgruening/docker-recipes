@@ -11,6 +11,7 @@ Included tools:
  * [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
  * [fastqc](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 
+
 Usage
 =====
 
