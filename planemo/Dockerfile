@@ -16,7 +16,6 @@ ENV GALAXY_TEST_UPLOAD_ASYNC false
 ENV GALAXY_TEST_DEFAULT_INTERACTOR api
 ENV GALAXY_TEST_PORT 7777
 
-
 WORKDIR /galaxy-central
-#ENTRYPOINT ["planemo"]
-#CMD ["--help"]
+ENTRYPOINT ["planemo"]
+CMD ["--help"]
