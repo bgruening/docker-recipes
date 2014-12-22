@@ -13,7 +13,7 @@ WORKDIR /galaxy-central
 RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_deseq2_1_6_1"
 RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deseq2"
 RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o lparsons --name htseq_count"
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o devteam --name all_cufflinks_tool_suite"
+RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name all_cufflinks_tool_suite"
 
 # Install bowtie2, fastqc
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools"
