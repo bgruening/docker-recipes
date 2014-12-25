@@ -13,10 +13,11 @@ WORKDIR /galaxy-central
 # Install NCBI Blast+
 
 
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name blast_datatypes"
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name ncbi_blast_plus --panel-section-name BLAST+"
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o peterjc --name blastxml_to_top_descr --panel-section-name BLAST+"
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o peterjc --name blast_rbh --panel-section-name BLAST+"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name blast_datatypes"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o peterjc --name blastxml_to_top_descr --panel-section-name BLAST+"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o peterjc --name blast_rbh --panel-section-name BLAST+"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o iuc --name package_blast_plus_2_2_29"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name ncbi_blast_plus --panel-section-name BLAST+"
 
 # The BLAST2GO database needs to be mounted in manually
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o peterjc --name blast2go --panel-section-name BLAST+"

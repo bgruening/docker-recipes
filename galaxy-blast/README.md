@@ -55,10 +55,34 @@ The PostgreSQL username is ``galaxy``, the password is ``galaxy`` and the databa
 If you want to create new users, please make sure to use the ``/export/`` volume. Otherwise your user will be removed after your docker session is finished.
 
 
+Using large extern BLAST databases
+==================================
+
+You can get BLAST databases directly from the [NCBI server](ftp://ftp.ncbi.nlm.nih.gov/blast/db/) and include them into your Galaxy docker container.
+
+ - download your databases from [ftp://ftp.ncbi.nlm.nih.gov/blast/db/](ftp://ftp.ncbi.nlm.nih.gov/blast/db/)
+ - store all your BLAST databases in one directory, for example `/galaxy_store/data/blast_databases/`
+ - start your Galaxy container with `-v /galaxy_store/data/blast_databases/:/data/` to have access to your databases inside of your container
+ - start your Galaxy container with ``-v /home/user/galaxy_storage/:/export/`` to export all config files to your host operating system
+ - modify your blast*.loc files under `/home/user/galaxy_storage/galaxy-central/tool-data/blast*.loc` on your host, or under `/export/galaxy-central/tool-data/blast*.loc` from within your container
+ - you need to add the paths to your blast databases and they need to look like `/export/swissprot/swissprot`
+ - restart your Galaxy instance, for example with ```docker exec <container name> supervisorctl restart galaxy:```
+
+From now on you should see predifined BLAST databases in your Galaxy User Interface if you choose `Locally installed BLAST database`.
+
+
 Requirements
 ============
 
 - [docker](https://docs.docker.com/installation/)
+
+
+Restarting Galaxy
+=================
+
+If you want to restart Galaxy without restarting the entire Galaxy container we can use `docker exec` (docker > 1.3).
+
+```docker exec <container name> supervisorctl restart galaxy:```
 
 
 History
@@ -71,7 +95,6 @@ Support & Bug Reports
 =====================
 
 For support, questions, or feature requests contact bjoern.gruening@gmail.com or fill bug reports at https://github.com/bgruening/galaxy_recipes/issues.
-
 
 
 Licence (MIT)
