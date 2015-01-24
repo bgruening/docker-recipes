@@ -1,14 +1,24 @@
 Galaxy Image for the BLAST+ suite
 =================================
 
-Galaxy with installed BLAST+ tools.
+A complete and production ready Galaxy instance with installed BLAST+ tools.
+
+ * [Installed tools](#installed-tools)
+ * [Usage](#usage)
+ * [Users & Passwords](#user--passowrds)
+ * [Reproducibility of your search results](#reproducibility-of-your-search-results)
+ * [Using large extern BLAST databases](#using-large-extern-blast-databases)
+ * [Requirements](#requirements)
+ * [Restarting Galaxy](#restarting-galaxy)
+ * [History](#history)
+ * [Support & Bug Reports](#support--bug-reports)
+ * [Licence (MIT)](#license-mit)
 
 
 Installed tools
 ===============
 
  * [BLAST+](http://blast.ncbi.nlm.nih.gov)
-
 
 Usage
 =====
@@ -53,6 +63,21 @@ Users & Passwords
 The Galaxy Admin User has the username ``admin@galaxy.org`` and the password ``admin``.
 The PostgreSQL username is ``galaxy``, the password is ``galaxy`` and the database name is ``galaxy`` (I know I was really creative ;)).
 If you want to create new users, please make sure to use the ``/export/`` volume. Otherwise your user will be removed after your docker session is finished.
+
+
+Reproducibility of your search results
+======================================
+
+BLAST databases are updated daily and are not versioned. This is a general problem for reproducibility of search results.
+In Galaxy we track the program version, all settings and the input files. The underlying database can be tracked but this is usually 
+very storage expensive. Note that the large NCBI BLAST databases exceeds 100 GB in size.
+To enable 100% reproducibility you can simply create your own BLAST datbase with Galaxy. Download your database as FASTA file
+and use the tool `NCBI BLAST+ makeblastdb` to convert your FASTA file to a proper BLAST database. These steps are reproducibly, with all settings and inputs.
+
+If you want to use the precalculated BLAST databases from the [NCBI FTP server](ftp://ftp.ncbi.nlm.nih.gov/blast/db/) you can
+configure your BLAST Galaxy instance to use those. Please have a look at [Using large extern BLAST databases](#large_databases). We have plans to make this a lot simples by using Galaxy *data managers*. You can track to progess here: https://github.com/peterjc/galaxy_blast/issues/22
+
+Please understand that we cannot ship the NCBI BLAST databases by default in this Docker container, as we try to keep the image as small as possible.
 
 
 Using large extern BLAST databases
