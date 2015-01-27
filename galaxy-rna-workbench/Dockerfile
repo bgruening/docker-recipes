@@ -17,7 +17,7 @@ RUN install-repository "--url https://testtoolshed.g2.bx.psu.edu/ -o rnateam --n
 RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name infernal --panel-section-name RNATools"
 RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o lionelguy --name rnammer --panel-section-name RNATools"
 RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name rnaz --panel-section-name RNATools"
-RUN install-repository "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suite_mirdeep_2_0 --panel-section-name RNATools"
+RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name suite_mirdeep_2_0 --panel-section-name RNATools"
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
