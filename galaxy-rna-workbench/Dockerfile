@@ -2,7 +2,8 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+#FROM bgruening/galaxy-stable:dev
+FROM ansible
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND Galaxy for RNA Research
@@ -37,7 +38,7 @@ RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o rnateam --name 
 #    "--url https://toolshed.g2.bx.psu.edu/ -o rnateam --name mirdeep2 --panel-section-name RNATools"
 #    
 
-RUN install-repository "--url https://toolshed.g2.bx.psu.edu/ -o rnateam --name vienna_rna --panel-section-name RNATools"
+RUN install-repository "--url https://testtoolshed.g2.bx.psu.edu/ -o rnateam --name vienna_rna --panel-section-name RNATools"
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
