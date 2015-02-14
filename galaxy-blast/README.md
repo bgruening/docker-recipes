@@ -7,7 +7,7 @@ A complete and production ready Galaxy instance with installed BLAST+ tools.
  * [Usage](#usage)
  * [Users & Passwords](#user--passowrds)
  * [Reproducibility of your search results](#reproducibility-of-your-search-results)
- * [Using large extern BLAST databases](#using-large-extern-blast-databases)
+ * [Using large external BLAST databases](#using-large-external-blast-databases)
  * [Requirements](#requirements)
  * [Restarting Galaxy](#restarting-galaxy)
  * [History](#history)
@@ -75,13 +75,13 @@ To enable 100% reproducibility you can simply create your own BLAST datbase with
 and use the tool `NCBI BLAST+ makeblastdb` to convert your FASTA file to a proper BLAST database. These steps are reproducibly, with all settings and inputs.
 
 If you want to use the precalculated BLAST databases from the [NCBI FTP server](ftp://ftp.ncbi.nlm.nih.gov/blast/db/) you can
-configure your BLAST Galaxy instance to use those. Please have a look at [Using large extern BLAST databases](#large_databases). We have plans to make this a lot simples by using Galaxy *data managers*. You can track to progess here: https://github.com/peterjc/galaxy_blast/issues/22
+configure your BLAST Galaxy instance to use those. Please have a look at [Using large external BLAST databases](#large_databases). We have plans to make this a lot simples by using Galaxy *data managers*. You can track to progess here: https://github.com/peterjc/galaxy_blast/issues/22
 
 Please understand that we cannot ship the NCBI BLAST databases by default in this Docker container, as we try to keep the image as small as possible.
 
 
-Using large extern BLAST databases
-==================================
+Using large external BLAST databases
+====================================
 
 You can get BLAST databases directly from the [NCBI server](ftp://ftp.ncbi.nlm.nih.gov/blast/db/) and include them into your Galaxy docker container.
 
@@ -90,7 +90,7 @@ You can get BLAST databases directly from the [NCBI server](ftp://ftp.ncbi.nlm.n
  - Store all your BLAST databases in one directory, for example `/galaxy_store/data/blast_databases/`
  - Start your Galaxy container with `-v /galaxy_store/data/blast_databases/:/data/` to have access your databases inside of your container
  - Start your Galaxy container with ``-v /home/user/galaxy_storage/:/export/`` to export all config files to your host operating system
- - Modify your blast*.loc files under `/home/user/galaxy_storage/galaxy-central/tool-data/blast*.loc` on your host, or under `/export/galaxy-central/tool-data/blast*.loc` from within your container.
+ - Modify your `blast*.loc` files under `/home/user/galaxy_storage/galaxy-central/tool-data/blast*.loc` on your host, or under `/export/galaxy-central/tool-data/blast*.loc` from within your container.
  - You need to add the paths to your blast databases. They need to look like `/export/swissprot/swissprot`
  - Restart your Galaxy instance, for example with ```docker exec <container name> supervisorctl restart galaxy:```
 
