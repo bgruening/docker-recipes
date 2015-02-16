@@ -23,7 +23,7 @@ RUN apt-add-repository ppa:bibi-help/bibitools && apt-add-repository ppa:j-4/vie
     pip install pyzmq ipython==2.3 jinja2 tornado pygments numpy biopython scikit-learn pandas \
         scipy sklearn-pandas bioblend matplotlib patsy pysam khmer dendropy ggplot mpld3 sympy rpy2 networkx
 
-RUN pip install git+http://github.com/bgruening/EDeN.git && \
+RUN pip install git+http://github.com/fabriziocosta/EDeN.git && \
     apt-get remove -y --purge libzmq-dev python-dev libc-dev build-essential binutils gfortran libreadline-dev software-properties-common && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
