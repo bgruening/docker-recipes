@@ -13,7 +13,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update && apt-get install --no-install-recommends -y apt-transport-https software-properties-common \
-    libzmq1 libzmq-dev python-dev libc-dev pandoc python-pip git-core python-pygraphviz\
+    libzmq1 libzmq-dev python-dev libc-dev pandoc python-pip git-core python-pygraphviz curl \
     build-essential libblas-dev liblapack-dev gfortran \
     libfreetype6-dev libpng-dev net-tools procps python-openbabel pkg-config \
     r-base libreadline-dev
