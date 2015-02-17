@@ -17,8 +17,8 @@ RUN apt-get -qq update && apt-get install --no-install-recommends -y apt-transpo
     build-essential libblas-dev liblapack-dev gfortran \
     libfreetype6-dev libpng-dev net-tools procps python-openbabel pkg-config \
     r-base libreadline-dev
-RUN apt-add-repository ppa:bibi-help/bibitools && apt-add-repository ppa:j-4/vienna-rna && \
-    apt-get -qq update && apt-get install --no-install-recommends -y rnashapes vienna-rna && \
+RUN apt-add-repository ppa:j-4/vienna-rna && \
+    apt-get -qq update && apt-get install --no-install-recommends -y vienna-rna && \
     pip install distribute --upgrade && \
     pip install pyzmq ipython==2.3 jinja2 tornado pygments numpy biopython scikit-learn pandas \
         scipy sklearn-pandas bioblend matplotlib patsy pysam khmer dendropy ggplot mpld3 sympy rpy2 networkx
@@ -63,6 +63,8 @@ ADD ./get /py/get
 ENV PYTHONPATH /py/:$PYTHONPATH
 ENV PATH /py/:$PATH
 RUN chmod 777 -R /py/
+
+RUN curl -sL https://github.com/bgruening/download_store/raw/master/RNAshapes/RNAshapes-2.1.6-i386-linux.tar.gz | tar xz && cp RNAshapes-2.1.6-i386-linux/RNAshapes /usr/bin/ && rm -rf RNAshapes-2.1.6-i386-linux
 
 # Drop privileges
 #USER nobody
