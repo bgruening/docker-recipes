@@ -20,8 +20,8 @@ RUN apt-get -qq update && apt-get install --no-install-recommends -y apt-transpo
 RUN apt-add-repository ppa:j-4/vienna-rna && \
     apt-get -qq update && apt-get install --no-install-recommends -y vienna-rna && \
     pip install distribute --upgrade && \
-    pip install pyzmq ipython==2.3 jinja2 tornado pygments numpy biopython scikit-learn pandas \
-        scipy sklearn-pandas bioblend matplotlib patsy pysam khmer dendropy ggplot mpld3 sympy rpy2 networkx
+    pip install pysam==8.1 pyzmq ipython==2.3 jinja2 tornado pygments numpy biopython scikit-learn pandas \
+        scipy sklearn-pandas bioblend matplotlib patsy khmer dendropy ggplot mpld3 sympy rpy2 networkx
 
 RUN pip install git+http://github.com/fabriziocosta/EDeN.git && \
     apt-get remove -y --purge libzmq-dev python-dev libc-dev build-essential binutils gfortran libreadline-dev software-properties-common && \
