@@ -2,7 +2,7 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-stable
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -17,9 +17,10 @@ ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES ChemicalToolBox
 # compressed archives will be extracted automatically
 ADD ./Jmoleditor.tar.bz2 /galaxy-central/
 
-RUN rm /usr/bin/startup
-ADD ./startup.sh /usr/bin/startup
-RUN chmod +x /usr/bin/startup
+# ToDo: run simpleHTTPServer from startup
+#RUN rm /usr/bin/startup
+#ADD ./startup.sh /usr/bin/startup
+#RUN chmod +x /usr/bin/startup
 
 # Install ChemicalToolBox & one example workflow
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox --panel-section-name ChemicalToolBox"
@@ -36,11 +37,11 @@ RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
 
-# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy), 9001 (Galaxy report app)
+# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy), 9002 (supervisor webui)
 EXPOSE :80
 EXPOSE :21
 EXPOSE :8800
-EXPOSE :9001
+EXPOSE :9002
 # 8000 is the standard SimpleHTTPServer Server port from python
 EXPOSE :8000
 
