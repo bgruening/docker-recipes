@@ -2,7 +2,7 @@
 #
 # VERSION       0.2
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-stable
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -10,8 +10,8 @@ ENV GALAXY_CONFIG_BRAND deepTools
 
 WORKDIR /galaxy-central
 
-RUN install-repository \
-    "--url https://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_deeptools_1_5_9"
+#RUN install-repository \
+#    "--url https://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_deeptools_1_5_10"
 
 # Install deepTools
 RUN install-repository \
