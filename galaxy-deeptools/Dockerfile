@@ -1,8 +1,8 @@
 # Galaxy - deepTools
 #
-# VERSION       0.2
+# VERSION       0.3
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:15.03
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -15,7 +15,7 @@ WORKDIR /galaxy-central
 
 # Install deepTools
 RUN install-repository \
-    "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools" \
 
 # Install bowtie2, fastqc
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools" \
