@@ -36,6 +36,10 @@ With the additional ``-v /home/user/galaxy_storage/:/export/`` parameter, docker
 
 This enables you to have different export folders for different sessions - means real separation of your different projects.
 
+Note that the default size allocated to `/dev/shm` is too small for many deeptools programs. This size can either be changed from within the container or simply exported from the base system with `-v /dev/shm:/dev/shm`:
+
+``docker run -d -p 8080:80 -v /home/user/galaxy_storage/:/export/ -v /dev/shm:/dev/shm bgruening/galaxy-deeptools``
+
 
 Users & Passwords
 ================
