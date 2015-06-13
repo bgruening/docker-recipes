@@ -8,11 +8,14 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND DESeq2
 
+# Enable TTS installation
+ENV GALAXY_CONFIG_TOOL_SHEDS_CONFIG_FILE $GALAXY_HOME/tool_sheds_conf.xml
+
 WORKDIR /galaxy-central
 
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_deseq2_1_6_1"
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deseq2"
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o lparsons --name htseq_count"
+RUN install-repository \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deseq2" \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o lparsons --name htseq_count"
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
