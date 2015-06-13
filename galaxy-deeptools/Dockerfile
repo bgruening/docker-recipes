@@ -2,7 +2,7 @@
 #
 # VERSION       0.3
 
-FROM bgruening/galaxy-stable:15.03
+FROM bgruening/galaxy-stable:15.05
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
