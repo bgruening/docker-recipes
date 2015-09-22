@@ -2,19 +2,19 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-stable
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND DESeq2
 
 # Enable TTS installation
-ENV GALAXY_CONFIG_TOOL_SHEDS_CONFIG_FILE $GALAXY_HOME/tool_sheds_conf.xml
+RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 WORKDIR /galaxy-central
 
 RUN install-repository \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deseq2" \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name deseq2" \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o lparsons --name htseq_count"
 
 # Mark folders as imported from the host.
