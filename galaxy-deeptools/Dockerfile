@@ -7,7 +7,7 @@ FROM bgruening/galaxy-stable:dev
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND deepTools
-RUN GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
+ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
 
 WORKDIR /galaxy-central
 
