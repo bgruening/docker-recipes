@@ -15,6 +15,7 @@ WORKDIR /galaxy-central
 
 RUN install-repository \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name deseq2" \
+    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name dexseq" \
     "--url http://testtoolshed.g2.bx.psu.edu/ -o lparsons --name htseq_count"
 
 # Mark folders as imported from the host.
