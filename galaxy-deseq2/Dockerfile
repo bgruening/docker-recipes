@@ -7,6 +7,8 @@ FROM bgruening/galaxy-stable
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND DESeq2
+ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
+
 
 # Enable TTS installation
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
