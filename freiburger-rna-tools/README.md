@@ -17,6 +17,18 @@ Available Tools
  * CARNA
  * ExpaRNA
 
+How to run the container
+===========
+
+To have the SGE server accessible,  hostname "frtwebserver" must be passed to the docker client with option -h
+
+e.g.
+
+    docker run -t -h frtwebserver -i imagename
+    
+If you want to watch the server output please run:
+
+    $ tail -f /var/log/tomcat7/catalina.out
 
 Limitations
 ===========
@@ -24,6 +36,7 @@ Limitations
  * sending notifications and error reports is not possible
  * parallel environments are currently not configured
 
+ 
 
 Authors
 =======

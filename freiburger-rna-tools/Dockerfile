@@ -56,4 +56,5 @@ EXPOSE :8080
 ADD run.sh /root/run.sh
 RUN chmod +x /root/run.sh
 
-CMD ["/root/run.sh"]
+# trick to execute startup commands and run the bash without exiting
+CMD bash -C '/root/run.sh';'bash'
