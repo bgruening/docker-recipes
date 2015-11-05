@@ -25,6 +25,10 @@ To have the SGE server accessible,  hostname "frtwebserver" must be passed to th
 e.g.
 
     docker run -t -h frtwebserver -i imagename
+    
+If you want to watch the server output please run:
+
+    $ tail -f /var/log/tomcat7/catalina.out
 
 Limitations
 ===========
