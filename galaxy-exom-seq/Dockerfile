@@ -8,11 +8,6 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND Exom Sequencing Pipeline
 
-WORKDIR /galaxy-central
-
-# Enable TTS installation
-ENV GALAXY_CONFIG_TOOL_SHEDS_CONFIG_FILE $GALAXY_HOME/tool_sheds_conf.xml
-
 # Install GATK2, samtools and 
 RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gatk2 --panel-section-name GATK2" \
@@ -38,12 +33,12 @@ RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name data_manager_bwa_index_builder" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bwa_wrappers --panel-section-name Mapping" \
-    "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name bwa_mem  --panel-section-name Mapping"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bwa_mem  --panel-section-name Mapping"
 
 
 RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name vt_variant_tools --panel-section-name VCFtools" \
-    "--url http://toolshed.g2.bx.psu.edu/ -o anton --name suite_vcflib_tools_2_0 --panel-section-name VCFtools" \
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name suite_vcflib_tools_2_0 --panel-section-name VCFtools" \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name snpeff --panel-section-name SNPEff"
 
 # Install GEMINI and BED tools
@@ -54,7 +49,7 @@ RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_gemini_0_10_0" \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name data_manager_gemini_database_downloader" \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gemini --panel-section-name VariantSelection" \
-    "--url http://testtoolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bedtools --panel-section-name BEDtools"
 
 # RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o crs4 --name kggseq_variant_selection --panel-section-name VariantSelection"
 
