@@ -1,23 +1,20 @@
 # Galaxy - Exom Sequencing Pipeline
-#
-# VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-ngs-preprocessing
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND Exom Sequencing Pipeline
+
+# Enable TTS installation
+# RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+
 
 # Install GATK2, samtools and 
 RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name gatk2 --panel-section-name GATK2" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name suite_samtools_0_1_19 --panel-section-name SAMTools" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name freebayes --panel-section-name Freebayes"
-
-# Bowtie & FASTQC
-RUN install-repository \
-    "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-name Mapping" \
-    "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc --panel-section-name QualityControl"
 
 RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name package_pysam_0_7_7" \
