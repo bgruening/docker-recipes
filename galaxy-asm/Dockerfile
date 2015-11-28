@@ -1,26 +1,24 @@
 # Galaxy - ASM
-#
-# VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+FROM bgruening/galaxy-ngs-preprocessing
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND Allele specific mapping
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
-    apt-get install --no-install-recommends -y build-essential gfortran tabix &&ß
-    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /galaxy-central
+# Enable TTS installation
+# RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
+    apt-get install --no-install-recommends -y build-essential gfortran tabix && \
+    apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install suspenders & labels
 RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name labels --panel-section-name ASM"
 RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suspenders --panel-section-name ASM"
 
 # Install bowtie2, fastqc & tophat
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-name ASM"
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name fastqc --panel-section-name NGS_QC"
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name package_tophat2_2_0_9 --panel-section-name ASM"
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name tophat2 --panel-section-name ASM"
 
