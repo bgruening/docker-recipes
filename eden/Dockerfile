@@ -15,8 +15,8 @@ RUN apt-get -qq update && apt-get install --no-install-recommends -y apt-transpo
     apt-get -qq update && \
     apt-get install --no-install-recommends -y rnashapes vienna-rna &&\
     pip install distribute --upgrade && \
-    pip install numpy biopython scikit-learn pandas \
-        scipy sklearn-pandas matplotlib dill networkx && \
+    pip install numpy biopython scipy matplotlib scikit-learn pandas \
+        sklearn-pandas dill networkx && \
     apt-get remove -y --purge libzmq-dev python-dev software-properties-common libc-dev build-essential libreadline-dev && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
