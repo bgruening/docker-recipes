@@ -18,6 +18,7 @@ RUN install-repository \
     "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
 
 # Install bowtie2, fastqc
+RUN install-repository \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name data_manager_bowtie2_index_builder" \
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name data_manager_fetch_genome_dbkeys_all_fasta" \
