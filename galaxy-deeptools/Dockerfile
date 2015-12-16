@@ -11,14 +11,11 @@ ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
 
 WORKDIR /galaxy-central
 
-RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
-
-#RUN install-repository \
-#    "--url https://testtoolshed.g2.bx.psu.edu/ -o iuc --name package_deeptools_1_5_10"
+RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 # Install deepTools
 RUN install-repository \
-    "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools" \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
 
 # Install bowtie2, fastqc
     "--url https://toolshed.g2.bx.psu.edu/ -o devteam --name bowtie2 --panel-section-id solexa_tools" \
