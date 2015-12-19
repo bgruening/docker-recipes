@@ -30,7 +30,7 @@ RUN install-repository \
     "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name deeptools --panel-section-name deepTools" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name data_manager_bwa_index_builder" \
     "--url http://toolshed.g2.bx.psu.edu/ -o devteam --name bwa_wrappers --panel-section-name Mapping" \
-    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bwa_mem  --panel-section-name Mapping"
+    "--url http://toolshed.g2.bx.psu.edu/ -o iuc --name bwa  --panel-section-name Mapping"
 
 
 RUN install-repository \
