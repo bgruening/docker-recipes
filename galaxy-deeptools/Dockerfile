@@ -1,6 +1,6 @@
 # Galaxy - deepTools
 #
-# VERSION       0.3
+# VERSION       dev
 
 FROM bgruening/galaxy-stable:dev
 
@@ -9,8 +9,6 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 ENV GALAXY_CONFIG_BRAND deepTools
 ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
 ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
-
-WORKDIR /galaxy-central
 
 RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
