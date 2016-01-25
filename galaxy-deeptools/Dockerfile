@@ -1,9 +1,8 @@
 # Galaxy - deepTools
 #
-# VERSION       dev
+# VERSION       16.01
 
-FROM bgruening/galaxy-stable:dev
-
+FROM quay.io/bgruening/galaxy:16.01
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND deepTools
