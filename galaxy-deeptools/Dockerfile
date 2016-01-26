@@ -9,11 +9,11 @@ ENV GALAXY_CONFIG_BRAND deepTools
 ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
 ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
 
-RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+#RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 # Install deepTools
 RUN install-repository \
-    "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
+    "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
 
 # Install bowtie2, fastqc
 RUN install-repository \
