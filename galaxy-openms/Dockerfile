@@ -10,10 +10,11 @@ ENV GALAXY_CONFIG_BRAND OpenMS
 ENV GALAXY_DOCKER_ENABLED True
 ENV GALAXY_DOCKER_VOLUMES_FROM
 
-WORKDIR /galaxy-central
+RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name package_openms_latest"
-RUN install-repository "--url http://testtoolshed.g2.bx.psu.edu/ -o bgruening --name openms --panel-section-name OpenMS"
+# Install deepTools
+ADD openms.yaml $GALAXY_ROOT/tools.yaml
+RUN install-tools $GALAXY_ROOT/tools.yaml
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
