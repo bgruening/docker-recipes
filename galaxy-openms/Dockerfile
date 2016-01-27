@@ -8,7 +8,7 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND OpenMS
 ENV GALAXY_DOCKER_ENABLED True
-ENV GALAXY_DOCKER_VOLUMES_FROM
+ENV GALAXY_DOCKER_VOLUMES_FROM ''
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
