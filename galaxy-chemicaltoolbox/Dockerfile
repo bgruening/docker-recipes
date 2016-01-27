@@ -2,7 +2,7 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:dev
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GALAXY_CONFIG_BRAND ChemicalToolBox
-ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES ChemicalToolBox
+ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
 
 # Include all needed scripts and libraries from the host
 # compressed archives will be extracted automatically
@@ -22,17 +22,22 @@ ADD ./Jmoleditor.tar.bz2 /galaxy-central/
 #ADD ./startup.sh /usr/bin/startup
 #RUN chmod +x /usr/bin/startup
 
+# Install deepTools
+ADD chemicaltoolbox_tools.yml $GALAXY_ROOT/tools.yaml
+RUN install-tools $GALAXY_ROOT/tools.yaml
+
+
 # Install ChemicalToolBox & one example workflow
 RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox --panel-section-name ChemicalToolBox"
 
 # install unique wrapper
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name unique --panel-section-id filter"
+#RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name unique --panel-section-id filter"
 
 # Install sed wrapper
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening --name sed_wrapper --panel-section-id textutil"
+#RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bjoern-gruening --name sed_wrapper --panel-section-id textutil"
 
 # Install workflow
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow --panel-section-name ChemicalToolBox"
+#RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox_merging_chemical_databases_workflow --panel-section-name ChemicalToolBox"
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
