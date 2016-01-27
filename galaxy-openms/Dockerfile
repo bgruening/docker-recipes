@@ -7,6 +7,8 @@ FROM bgruening/galaxy-stable:dev
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND OpenMS
+ENV GALAXY_DOCKER_ENABLED True
+ENV GALAXY_DOCKER_VOLUMES_FROM
 
 WORKDIR /galaxy-central
 

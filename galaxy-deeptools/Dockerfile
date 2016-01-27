@@ -1,21 +1,19 @@
 # Galaxy - deepTools
 #
-# VERSION       0.3
+# VERSION       16.01
 
-FROM bgruening/galaxy-stable:dev
-
+FROM quay.io/bgruening/galaxy:16.01
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
 ENV GALAXY_CONFIG_BRAND deepTools
 ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
+ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
 
-WORKDIR /galaxy-central
-
-RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+#RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 # Install deepTools
 RUN install-repository \
-    "--url https://testtoolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
+    "--url https://toolshed.g2.bx.psu.edu/ -o bgruening --name suite_deeptools --panel-section-name deepTools"
 
 # Install bowtie2, fastqc
 RUN install-repository \
