@@ -2,7 +2,7 @@
 #
 # VERSION       0.1
 
-FROM bgruening/galaxy-stable:dev
+FROM quay.io/bgruening/galaxy:16.01
 
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
@@ -10,8 +10,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
     apt-get install --no-install-recommends -y wget libcairo2-dev && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV GALAXY_CONFIG_BRAND ChemicalToolBox
-ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
+ENV GALAXY_CONFIG_BRAND ChemicalToolBox \
+GALAXY_CONFIG_BRAND Galaxy Metagenomics \
+GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True \
+GALAXY_CONFIG_CONDA_AUTO_INSTALL True \
+GALAXY_CONFIG_CONDA_AUTO_INIT = True \
+GALAXY_CONFIG_CONDA_ENSURE_CHANNELS r,bioconda
 
 # Include all needed scripts and libraries from the host
 # compressed archives will be extracted automatically
@@ -26,9 +30,6 @@ ADD ./Jmoleditor.tar.bz2 /galaxy-central/
 ADD chemicaltoolbox_tools.yml $GALAXY_ROOT/tools.yaml
 RUN install-tools $GALAXY_ROOT/tools.yaml
 
-
-# Install ChemicalToolBox & one example workflow
-RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name chemicaltoolbox --panel-section-name ChemicalToolBox"
 
 # install unique wrapper
 #RUN install-repository "--url http://toolshed.g2.bx.psu.edu/ -o bgruening --name unique --panel-section-id filter"
