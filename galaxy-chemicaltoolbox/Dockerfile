@@ -11,10 +11,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV GALAXY_CONFIG_BRAND ChemicalToolBox \
-GALAXY_CONFIG_BRAND Galaxy Metagenomics \
 GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True \
 GALAXY_CONFIG_CONDA_AUTO_INSTALL True \
-GALAXY_CONFIG_CONDA_AUTO_INIT = True \
+GALAXY_CONFIG_CONDA_AUTO_INIT True \
 GALAXY_CONFIG_CONDA_ENSURE_CHANNELS r,bioconda
 
 # Include all needed scripts and libraries from the host
