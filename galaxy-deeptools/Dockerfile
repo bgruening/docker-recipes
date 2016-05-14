@@ -2,14 +2,17 @@
 #
 # VERSION       16.01
 
-FROM quay.io/bgruening/galaxy:16.01
+FROM quay.io/bgruening/galaxy:dev
 MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 
-ENV GALAXY_CONFIG_BRAND deepTools
-ENV GALAXY_CONFIG_ENABLE_BETA_TOOL_COMMAND_ISOLATION True
-ENV GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES True
-
-#RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+ENV GALAXY_CONFIG_BRAND="deepTools" \
+    GALAXY_CONFIG_SERVE_XSS_VULNERABLE_MIMETYPES=True \
+    GALAXY_CONFIG_CONDA_ENSURE_CHANNELS=r,bioconda,bgruening \
+    GALAXY_CONFIG_CONDA_AUTO_INSTALL=True \
+    GALAXY_CONFIG_CONDA_DEBUG=True \
+    GALAXY_CONFIG_CONDA_AUTO_INIT=True \
+    GALAXY_CONFIG_DEFAULT_JOB_SHELL=/bin/bash \
+    GALAXY_CONFIG_CLEANUP_JOB=never
 
 # Install deepTools
 RUN install-repository \
