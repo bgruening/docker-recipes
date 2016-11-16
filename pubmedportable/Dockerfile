@@ -17,7 +17,7 @@ RUN dpkg-reconfigure locales && \
 
 ENV LC_ALL C.UTF-8
 
-RUN pip install sqlalchemy
+RUN pip install sqlalchemy==1.0.11
 
 
 # Download and update Galaxy to the latest stable release
