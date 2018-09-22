@@ -4,8 +4,8 @@ import shutil
 import argparse
 import subprocess
 
-PG_BIN = "/usr/lib/postgresql/9.1/bin/"
-PG_CONF = '/etc/postgresql/9.1/main/postgresql.conf'
+PG_BIN = "/usr/lib/postgresql/9.6/bin/"
+PG_CONF = '/etc/postgresql/9.6/main/postgresql.conf'
 
 def pg_ctl( database_path, mod = 'start' ):
     """

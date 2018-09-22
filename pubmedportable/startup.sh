@@ -15,4 +15,4 @@ fi
 
 touch /export/.pubmed2go_save
 
-tail -f /var/log/postgresql/postgresql-9.1-main.log
+tail -f /var/log/postgresql/postgresql-9.6-main.log
