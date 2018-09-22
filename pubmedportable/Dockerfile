@@ -17,6 +17,7 @@ RUN dpkg-reconfigure locales && \
 
 ENV LC_ALL C.UTF-8
 
+RUN pip install -i https://pypi.python.org/simple -U pip distribute
 RUN pip install sqlalchemy==1.0.11
 
 
