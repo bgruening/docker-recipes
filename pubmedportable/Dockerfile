@@ -42,7 +42,11 @@ RUN chmod +x /usr/bin/startup
 RUN service postgresql stop -m smart
 RUN rm $PG_DATA_DIR_DEFAULT -rf
 RUN python setup_postgresql.py --dbuser parser --dbpassword parser --db-name pubmed --dbpath $PG_DATA_DIR_DEFAULT --db-schema pubmed
-RUN service postgresql start && python PubMedDB.py -d pubmed && service postgresql stop -m smart
+RUN service postgresql start && \
+    echo "Waiting for PostgreSQL" && \
+    sleep 2m && \
+    python PubMedDB.py -d pubmed && \
+    service postgresql stop -m smart
 RUN echo "host    all             all             0.0.0.0/0            md5" >> /etc/postgresql/9.1/main/pg_hba.conf
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.1/main/postgresql.conf
 
