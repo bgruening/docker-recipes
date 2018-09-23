@@ -9,14 +9,13 @@ MAINTAINER Björn A. Grüning, bjoern.gruening@gmail.com
 # make sure the package repository is up to date
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install --no-install-recommends -y git-core mercurial build-essential \
-        python-xappy python-xapian python-pip pkg-config postgresql python-dev ca-certificates python-psycopg2 python-sqlalchemy
+        python-xappy python-xapian pkg-config postgresql python-dev ca-certificates python-psycopg2 python-sqlalchemy
 
 RUN dpkg-reconfigure locales && \
     locale-gen C.UTF-8 && \
     /usr/sbin/update-locale LANG=C.UTF-8
 
 ENV LC_ALL C.UTF-8
-
 
 # Download and update Galaxy to the latest stable release
 RUN git clone https://github.com/KerstenDoering/PubMed2Go.git
@@ -39,7 +38,11 @@ RUN chmod +x /usr/bin/startup
 RUN service postgresql stop
 RUN rm $PG_DATA_DIR_DEFAULT -rf
 RUN python setup_postgresql.py --dbuser parser --dbpassword parser --db-name pubmed --dbpath $PG_DATA_DIR_DEFAULT --db-schema pubmed
-RUN service postgresql start && python PubMedDB.py -d pubmed && service postgresql stop
+RUN service postgresql start && \
+    echo "Waiting for PostgreSQL" && \
+    sleep 2m && \
+    python PubMedDB.py -d pubmed && \
+    service postgresql stop
 RUN echo "host    all             all             0.0.0.0/0            md5" >> /etc/postgresql/9.6/main/pg_hba.conf
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.6/main/postgresql.conf
 
