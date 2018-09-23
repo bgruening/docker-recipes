@@ -3,9 +3,9 @@ import os
 import shutil
 import subprocess
 
-PG_DATA_DIR_DEFAULT = sys.argv[1] or "/var/lib/postgresql/9.1/main"
-PG_DATA_DIR_HOST = "/export/postgresql/9.1/main/"
-PG_CONF = '/etc/postgresql/9.1/main/postgresql.conf'
+PG_DATA_DIR_DEFAULT = sys.argv[1] or "/var/lib/postgresql/9.6/main"
+PG_DATA_DIR_HOST = "/export/postgresql/9.6/main/"
+PG_CONF = '/etc/postgresql/9.6/main/postgresql.conf'
 
 if __name__ == "__main__":
     """
